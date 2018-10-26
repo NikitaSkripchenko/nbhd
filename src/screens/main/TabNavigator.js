@@ -1,12 +1,11 @@
 import React from 'react';
 import {createBottomTabNavigator} from "react-navigation";
 
-import Icon from 'react-native-vector-icons/Ionicons';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import colors from "../../assets/colors/colors";
-import Profile from "./../main/profile/ProfileIndex";
-import Feed from "./../main/feed/FeedIndex";
-import Notice from "./../main/notice/NoticeIndex";
+import Profile from "./../main/profile/ProfileScreen";
+import Feed from "./../main/feed/FeedScreen";
+import Notice from "./../main/notice/NoticeScreen";
 
 const options = {
     activeTintColor: colors.orange,
@@ -23,19 +22,19 @@ const TabNavigator = createBottomTabNavigator({
         Profile: {
             screen: Profile,//nav
             navigationOptions: {
-                tabBarIcon: ({tintColor}) => <Icon name="ios-home" size={26} color={tintColor}/>,
+                tabBarIcon: ({tintColor}) => <Icon name="person" size={26} color={tintColor}/>,
             }
         },
         Feed: {
             screen: Feed, //nav
             navigationOptions: {
-                tabBarIcon: ({tintColor}) => <Icon name="ios-search" size={26} color={tintColor}/>,
+                tabBarIcon: ({tintColor}) => <Icon name="list" size={26} color={tintColor}/>,
             }
         },
         Notice: {
             screen: Notice, //nav
             navigationOptions: {
-                tabBarIcon: ({tintColor}) => <Icon name="ios-notifications" size={26} color={tintColor}/>,
+                tabBarIcon: ({tintColor}) => <Icon name="notifications-none" size={26} color={tintColor}/>,
             }
         },
     }, {
