@@ -3,9 +3,9 @@ import {createBottomTabNavigator} from "react-navigation";
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import colors from "../../assets/colors/colors";
-import Profile from "./../main/profile/ProfileScreen";
-import Feed from "./../main/feed/FeedScreen";
-import Notice from "./../main/notice/NoticeScreen";
+import Profile from "./../main/profile/ProfileNavigator";
+import Feed from "./../main/feed/FeedNavigator";
+import Notice from "./../main/notice/NoticeNavigator";
 
 const options = {
     activeTintColor: colors.orange,
@@ -20,19 +20,19 @@ const options = {
 
 const TabNavigator = createBottomTabNavigator({
         Profile: {
-            screen: Profile,//nav
+            screen: Profile,
             navigationOptions: {
                 tabBarIcon: ({tintColor}) => <Icon name="person" size={26} color={tintColor}/>,
             }
         },
         Feed: {
-            screen: Feed, //nav
+            screen: Feed,
             navigationOptions: {
                 tabBarIcon: ({tintColor}) => <Icon name="list" size={26} color={tintColor}/>,
             }
         },
         Notice: {
-            screen: Notice, //nav
+            screen: Notice,
             navigationOptions: {
                 tabBarIcon: ({tintColor}) => <Icon name="notifications-none" size={26} color={tintColor}/>,
             }
