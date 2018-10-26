@@ -1,30 +1,23 @@
-import React, {Component} from 'react';
-import { StatusBar, Alert } from 'react-native'
-import {DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
-import AppNavigator from "./src/screens/AppNavigator";
-import colors from "./src/assets/colors/colors";
+import React from "react";
+import { Provider } from "react-redux";
+import thunk from "redux-thunk";
+import { createStore, applyMiddleware } from "redux";
 
-const theme = {
-    ...DefaultTheme,
-    colors: {
-        ...DefaultTheme.colors,
-        primary: colors.orange,
-        accent: colors.orange,
-    }
-};
+import rootReduser from "./src/rootReducer";
+import Main from "./src/Main";
 
-class App extends Component {
-    render() {
-    return (
-        <PaperProvider theme={theme}>
-            <StatusBar
-                backgroundColor={colors.orange}
-                barStyle="light-content"
-            />
-            <AppNavigator/>
-        </PaperProvider>
-    );
-  }
-}
+const devMiddleware = [];   // Loger way be placed here
+const middleware = [thunk];
+
+const store = createStore(
+  rootReduser,
+  applyMiddleware(...middleware, ...devMiddleware)
+);
+
+const App = props => (
+  <Provider store={store}>
+    <Main />
+  </Provider>
+);
 
 export default App;
