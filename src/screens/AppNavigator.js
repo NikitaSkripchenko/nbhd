@@ -16,7 +16,7 @@ const AppNavigator = createSwitchNavigator({
             gesturesEnabled: true,
             gestureResponseDistance: {horizontal: 200}
         },
-        initialRouteName: "AuthNavigator",
+        initialRouteName: "MainNavigator",
     });
 
 export default AppNavigator;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Text, View } from 'react-native'
 
-export default class NoticeIndex extends Component {
+export default class NoticeScreen extends Component {
   render() {
     return (
       <View>
