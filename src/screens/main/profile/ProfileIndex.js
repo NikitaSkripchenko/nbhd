@@ -1,14 +1,11 @@
 import React, { Component } from 'react'
 import { Text, View } from 'react-native'
 
-export default class AuthScreen extends Component {
-  static navigationOptions ={
-    header: null
-  }
+export default class ProfileIndex extends Component {
   render() {
     return (
       <View>
-        <Text> Login </Text>
+        <Text> Profile </Text>
       </View>
     )
   }
