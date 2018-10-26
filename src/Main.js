@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import { StatusBar } from 'react-native'
 import {DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
-import AppNavigator from "./src/screens/AppNavigator";
-import colors from "./src/assets/colors/colors";
+import AppNavigator from "./screens/AppNavigator";
+import colors from "./assets/colors/colors";
 
 const theme = {
   ...DefaultTheme,

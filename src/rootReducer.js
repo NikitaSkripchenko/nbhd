@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
+import { authReducer } from './screens/auth'
 
-const rootReduer = combineReducers({ /* redusers goes here*/  });
+const rootReduer = combineReducers({ authReducer });
 
 export default rootReduer;

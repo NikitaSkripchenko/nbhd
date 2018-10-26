@@ -1,6 +1,6 @@
 import {createStackNavigator} from "react-navigation";
 import transitionConfig from "../../library/utils/transitionConfig";
-import LogInScreen from "../../screens/auth/AuthScreen";
+import LogInScreen from "./AuthScreen";
 
 
 const AuthNavigator = createStackNavigator({
