@@ -4,3 +4,4 @@ export const AUTH_ROUTE = "AuthScreen";
 export const FEED_ROUTE = "FeedScreen";
 export const NOTICE_ROUTE = "NoticeScreen";
 export const TASK_ROUTE = "TaskScreen";
+export const MAP_ROUTE = "MapScreen";

@@ -52,7 +52,7 @@ export default class FeedScreen extends Component {
         ),
         headerRight: (
             <View style={{marginRight: 16}}>
-                <Icon name={'map'} size={30} color={colors.white} onPress={() => Alert.alert("Hi")}/>
+                <Icon name={'map'} size={30} color={colors.white} onPress={() => navigation.navigate('MapScreen')}/>
             </View>
         ),
         headerStyle: {
