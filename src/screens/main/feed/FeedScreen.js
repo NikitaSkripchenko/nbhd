@@ -85,7 +85,7 @@ class FeedScreen extends Component {
 
     componentDidMount = () => {
         const { listTasks } = this.props;
-        listTasks("token");
+        //listTasks("token");
     }
     
     componentWillUnmount = () => {
