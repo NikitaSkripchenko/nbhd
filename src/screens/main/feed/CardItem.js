@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, Image, Platform  } from 'react-native'
+import { Text, View, StyleSheet, Image, Platform, TouchableOpacity  } from 'react-native'
 import PropTypes from 'prop-types';
 import colors from "../../../assets/colors/colors";
 import { Card } from 'react-native-paper';
@@ -30,7 +30,7 @@ const CardItem = ({
 }) => {
 
     return (
-        <View style = {[styles.shadow, styles.container ]}>
+        <TouchableOpacity onPress = {()=> this.props.onPress()}style = {[styles.shadow, styles.container ]}>
 
 
             <View style = {styles.userContainer}>
@@ -58,7 +58,7 @@ const CardItem = ({
                 
             </View>
 
-        </View>
+        </TouchableOpacity>
     )
 };
 
