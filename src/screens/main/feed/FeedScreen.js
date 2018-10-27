@@ -154,6 +154,7 @@ class FeedScreen extends Component {
           showsVerticalIndicator={false}
           renderItem={({ item }) => (
             <CardItem
+              userPhoto={item.creator.photo}
               onPress={() => this.navigate(item.id)}
               title={item.title}
               userName={item.creator.name}

@@ -21,7 +21,7 @@ const getDistance = {
 
 const CardItem = ({
     onPress,
-    photoUrl, 
+    userPhoto, 
     userName, 
     userRating, 
     title,
@@ -35,7 +35,7 @@ const CardItem = ({
 
 
             <View style = {styles.userContainer}>
-                <Image source={photoUrl}
+                <Image source={{ uri:userPhoto }}
                     style={styles.image}/>
                 <Text style = {styles.textName}>{userName}</Text>
                     <View style ={styles.ratingContainer}>
@@ -51,7 +51,7 @@ const CardItem = ({
 
                 <View style={{alignItems: 'flex-start'}}>
                     <Text style = {styles.text}>{getDistance[distance]}</Text>
-                    <Text style = {styles.text}>Estimated time: {estimatedTime}</Text>
+                    <Text style = {styles.text}>Estimated time: {estimatedTime} minutes</Text>
                     <View style = {styles.encourageContainer}>
                         <Text style={styles.text}>{getEncourageType[encourageType]}</Text>
                     </View>
@@ -109,7 +109,8 @@ const styles = StyleSheet.create({
     },
     image:{
         height: 50,
-        width: 50
+        width: 50,
+        borderRadius: 30
     },
     userContainer:{
         borderRightWidth: 1,

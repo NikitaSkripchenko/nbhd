@@ -84,7 +84,8 @@ class TaskScreen extends Component {
 				<View style= {{flexDirection: 'row', marginVertical: 32}}>
 					<Icon name = "location-on" size = {24} />
 					<Text style = {styles.description}>{distance[result.distance]}</Text>
-				</View>
+				</View> 
+				<Text style = {styles.text}>Estimated time: {result.time} minutes</Text>
 
 				<Text style = {styles.description}>{encouragement[result.encouragement]}</Text>
 				<TouchableOpacity
@@ -146,5 +147,9 @@ const styles = StyleSheet.create({
 		color: colors.white,
 		fontWeight: "500",
 		fontSize: 17
-	  }
+	  },
+	  text:{
+        fontWeight: '500',
+        textAlign: 'left'
+    },
 })

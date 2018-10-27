@@ -1,1 +1,1 @@
-export const distance = { 1: "up to 500", 2:'up to 1000', 3: 'up to 2000', 4: 'up to 5000', 5: 'above 5000'}
+export const distance = { 1: "up to 500m", 2:'up to 1km', 3: 'up to 2km', 4: 'up to 5km', 5: 'far away'}
