@@ -183,7 +183,7 @@ const mapState = ({ feed }) => ({
     tasksLoaded: feed.tasksLoaded 
 });
 
-const mapDispatch = dispatch = bindActionCreators({
+const mapDispatch = dispatch => bindActionCreators({
     listTasks,
     resetTasks, 
     createTask

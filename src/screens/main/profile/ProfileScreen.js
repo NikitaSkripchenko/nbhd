@@ -1,10 +1,40 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, FlatList, Platform } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 
 import colors from "../../../assets/colors/colors";
+import HistoryCard from "./HistoryCard";
+
+const test = [
+  {
+    message: "Message",
+    isAuthor: true
+  },
+  {
+    message: "Message",
+    isAuthor: false
+  },
+  {
+    message: "Message",
+    isAuthor: false
+  },
+  {
+    message: "Message",
+    isAuthor: false
+  },{
+    message: "Message",
+    isAuthor: false
+  },{
+    message: "Message",
+    isAuthor: false
+  },
+  {
+    message: "Message",
+    isAuthor: true
+  }
+];
 
 const SettingsButton = ({ onPress, style }) => (
   <View style={style}>
@@ -38,6 +68,7 @@ export default class ProfileScreen extends Component {
 
   render() {
     const {
+      shadow,
       headerContainer,
       profileImageContainer,
       userInfoContainer,
@@ -47,8 +78,8 @@ export default class ProfileScreen extends Component {
     } = styles;
 
     return (
-      <View>
-        <View style={headerContainer}>
+      <View style={styles.main}>
+        <View style={[headerContainer, shadow]}>
           <View style={profileImageContainer}>
             <Text>I</Text>
           </View>
@@ -57,17 +88,20 @@ export default class ProfileScreen extends Component {
               <Text style={styles.uName}>Hello Dude</Text>
             </View>
             <View style={ratingContainer}>
-              <Icon
-                name={"star"}
-                size={24}
-                color={colors.orange}
-              />
+              <Icon name={"star"} size={24} color={colors.orange} />
               <Text>4.4</Text>
             </View>
           </View>
         </View>
         <View style={history}>
-          <Text>List of activity here</Text>
+          <FlatList
+            data={test}
+            showsVerticalIndicator={false}
+            renderItem={({ item }) => (
+              <HistoryCard message={item.message} isAuthor={item.isAuthor} />
+            )}
+            keyExtractor={(x, i) => i.toString()}
+          />
         </View>
       </View>
     );
@@ -75,8 +109,12 @@ export default class ProfileScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-  headerContainer: {
+  main: {
     backgroundColor: colors.background,
+    flex: 1
+  },
+  headerContainer: {
+    backgroundColor: colors.white,
     display: "flex",
     flexDirection: "row",
     padding: 15
@@ -110,8 +148,21 @@ const styles = StyleSheet.create({
     alignContent: "center",
     alignItems: "center"
   },
-
-  history: {}
+  shadow: {
+    ...Platform.select({
+      ios: {
+        shadowOpacity: 0.3,
+        shadowRadius: 3,
+        shadowColor: colors.FitBlack,
+        shadowOffset: { height: 3, width: 3 }
+      },
+      android: {
+        elevation: 3
+      }
+    })
+  },
+  history: {
+  }
 });
 
 const appbarStyles = StyleSheet.create({

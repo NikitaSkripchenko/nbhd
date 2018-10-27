@@ -3,8 +3,9 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { getTask, resetTask } from './actions';
+import colors from "../../../assets/colors/colors";
 
-import { Text, View } from 'react-native'
+import { Text, View, StyleSheet } from 'react-native'
 
 const BackButton = ({ onPress, style }) => (
   <View style={style}>
