@@ -23,6 +23,8 @@ import CardItem from "./CardItem";
 import { TextInput } from "react-native-paper";
 
 class FeedScreen extends Component {
+	handleCreateTask = this.handleCreateTask.bind(this);
+
   state = {
     newTitle: "",
     newDescr: "",
@@ -31,7 +33,7 @@ class FeedScreen extends Component {
     user: null
   };
   updateType = newType => {
-    this.setState({ newType: newType });
+    this.setState({ newTopicType: newType });
   };
 
 	updateEnc = newEnc => {
@@ -70,24 +72,26 @@ class FeedScreen extends Component {
       });
 	};
 	
-	handleCreateTask () {
-		console.log('h');
+	handleCreateTask (callback) {
 		const { newTitle, newDescr, newEnc } = this.state;
+		const { createTask } = this.props;
+
 		AsyncStorage.getItem("user")
-		.then(res => JSON.parse(res))
-		.then(user => {
+		.then(res => {
+			let user = JSON.parse(res);
 			navigator.geolocation.getCurrentPosition(pos => {
 				const { longitude, latitude } = pos.coords;
 				createTask({
 					token: user.token,
 					title: newTitle,
-					category: 0,
+					category: 1,
 					description: newDescr,
 					encouragement: newEnc,
 					location: [ longitude, latitude ],
 					time: 60,
-					pay: 0
+					pay: 10
 				});
+				callback();
 			}) 
 		});
 	}
@@ -135,7 +139,7 @@ class FeedScreen extends Component {
                       selectedValue={this.state.newTopicType}
                       onValueChange={this.updateType}
                     >
-                      <Picker.Item label="Topic1" value={1} />
+                      <Picker.Item label="1" value={1} />
                       <Picker.Item label="2" value={2} />
                       <Picker.Item label="3" value={3} />
                       <Picker.Item label="4" value={4} />
@@ -163,7 +167,7 @@ class FeedScreen extends Component {
                     onChangeText={newDescr => this.setState({ newDescr })}
                   />
                   <TouchableOpacity
-                    onPress={()=>this.handleCreateTask()}
+                    onPress={()=>this.handleCreateTask(toggle)}
                     style={styles.addButtonContainer}
                   >
                     <Text style={styles.addHelpText}>Addertr Task</Text>

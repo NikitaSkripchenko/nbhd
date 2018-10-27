@@ -36,11 +36,13 @@ export const resetTask = () => ({
 
 export const createTask = params => {
   return async (dispatch) => {
-    const json = getJSON(endpoints.TASKS_CREATE, params);
-    console.log(json);
+    const json = await getJSON(endpoints.TASKS_CREATE, params);
+
+    data = json.status ? params : null;
+
     return dispatch({
       type: actionTypes.TASKS_CREATE,
-      data: json
+      data: data
     })
   }
 }

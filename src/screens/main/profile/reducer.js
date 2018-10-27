@@ -12,7 +12,8 @@ export default (state = initialState, action) => {
     case actionTypes.USRERS_GET:
       return {
         ...state,
-        data,
+        user: data,
+        userLoaded: true
       }
     default:
       return state;

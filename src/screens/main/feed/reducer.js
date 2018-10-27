@@ -4,7 +4,8 @@ const initialState = {
   tasks: [],
   tasksLoaded: false,
   task: null,
-  taskLoaded: false
+  taskLoaded: false,
+  flag: false
 }
 
 export default (state = initialState, action) => {
@@ -36,12 +37,9 @@ export default (state = initialState, action) => {
         tasksLoaded: false
     }
     case actionTypes.TASKS_CREATE:
-      //console.log('asd');
-      const { status, ...newTask } = data;
       return {
         ...state,
-        tasks: [...state.tasks, newTask],
-        /* something else */
+        tasks: !!data ? state.tasks.push(data) : state.tasks;
       }
     default: 
       return state;

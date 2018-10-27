@@ -65,7 +65,7 @@ class ProfileScreen extends Component {
     };
   };
 
-  componentDidMount = () => {
+  componentDidMount(){
     const { getUser } = this.props;
     AsyncStorage.getItem('user')
     .then(res => JSON.parse(res))
@@ -87,7 +87,7 @@ class ProfileScreen extends Component {
     } = styles;
 
     const { user, userLoaded } = this.props;
-    console.log({user, userLoaded});
+
     if(!userLoaded) return (<Text>Loading....</Text>)
 
     return (
