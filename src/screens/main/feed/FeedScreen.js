@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Text, View, FlatList, StyleSheet } from 'react-native';
+import { Text, View, FlatList, StyleSheet, Alert } from 'react-native';
 import colors from "../../../assets/colors/colors";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import CardItem from "./CardItem";
+import Toggle from "./Toggle";
 
 export default class FeedScreen extends Component {
 
@@ -38,6 +39,9 @@ export default class FeedScreen extends Component {
             textAlign: "center",
             flex: 1,
         },
+        headerLeft:(
+            <View/>
+        ),
         headerRight: (
             <View style={{marginRight: 16}}>
                 <Icon name={'map'} size={30} color={colors.white} onPress={() => Alert.alert("Hi")}/>
@@ -71,7 +75,15 @@ export default class FeedScreen extends Component {
 
     render() {
         return (
-            <View style = {styles.container}>
+            <View style = {styles.container}>  
+                <Toggle>
+                    {({on, toggle})=>(
+                        <React.Fragment>
+                        { !on && <View onPress ={()=>toggle()}> <Text>open</Text></View>}
+                        { on && <View><Text>close</Text></View>}  
+                        </React.Fragment>
+                    )}
+                </Toggle>
                 <FlatList
                     data={this.state.data}
                     showsVerticalIndicator={false}
