@@ -9,10 +9,9 @@ const initialState = {
 
 export default (state = initialState, action) => {
   const { type, data } = action;
-  if(!data) return state;
-  
+
   switch(type){
-    case actionTypes.TASKS_GET:
+    case actionTypes.TASK_GET:
       return {
         ...state,
         task: data,
@@ -22,7 +21,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         tasks: data,
-        taskLoaded: true
+        tasksLoaded: true
       }
     case actionTypes.TASK_RESET: 
       return {
@@ -35,7 +34,7 @@ export default (state = initialState, action) => {
         ...state,
         tasks: [],
         tasksLoaded: false
-      }
+    }
     case actionTypes.TASKS_CREATE:
       const { status, ...newTask } = data;
       return {
@@ -44,6 +43,6 @@ export default (state = initialState, action) => {
         /* something else */
       }
     default: 
-      break;
+      return state;
   }
 }

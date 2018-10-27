@@ -20,6 +20,7 @@ const getDistance = {
 }
 
 const CardItem = ({
+    onPress,
     photoUrl, 
     userName, 
     userRating, 
@@ -30,7 +31,7 @@ const CardItem = ({
 }) => {
 
     return (
-        <TouchableOpacity onPress = {()=> this.props.onPress()}style = {[styles.shadow, styles.container ]}>
+        <TouchableOpacity onPress = {()=> onPress()}style = {[styles.shadow, styles.container ]}>
 
 
             <View style = {styles.userContainer}>
