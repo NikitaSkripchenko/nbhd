@@ -1,8 +1,20 @@
 import * as actionTypes from "../../../constants/actionTypes";
 
 const initialState = {
-  tasks: [],
-  tasksLoaded: false,
-  task: null,
-  taskLoaded: false
+  user: null,
+  userLoaded: false
+}
+
+export default (state = initialState, action) => {
+  const { data, type } = action;
+
+  switch(type){
+    case actionTypes.USRERS_GET:
+      return {
+        ...state,
+        data,
+      }
+    default:
+      return state;
+  }
 }

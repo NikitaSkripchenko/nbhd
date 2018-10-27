@@ -7,7 +7,7 @@ export const getTask = ({ token, id }) => {
     const json = await getJSON(endpoints.TASKS_GET, { token, id });
 
     return dispatch({
-      type: actionTypes.TASKS_GET,
+      type: actionTypes.TASK_GET,
       data: json
     });
   };

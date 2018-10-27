@@ -93,7 +93,7 @@ class FeedScreen extends Component {
 	}
 
   componentWillUnmount = () => {
-    const { resetTasks } = this.props;
+    const { resetTasks } = this.props;    
     resetTasks();
   };
 
