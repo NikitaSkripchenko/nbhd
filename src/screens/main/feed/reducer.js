@@ -9,7 +9,8 @@ const initialState = {
 
 export default (state = initialState, action) => {
   const { type, data } = action;
-
+  if(!data) return state;
+  
   switch(type){
     case actionTypes.TASKS_GET:
       return {
