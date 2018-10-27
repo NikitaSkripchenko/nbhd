@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux';
-import { authReducer as auth } from './screens/auth'
 import feed from './screens/main/feed/reducer'
 
-const rootReduer = combineReducers({ auth, feed });
+const rootReduer = combineReducers({ feed });
 
 export default rootReduer;

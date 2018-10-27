@@ -1,19 +1,27 @@
 import * as actionTypes from "../../../constants/actionTypes";
 import * as endpoints from "../../../constants/apiEndpoints";
-import { callAction } from "../../../api/api";
+import { getJSON } from "../../../api/api";
 
 export const getTask = ({ token, id }) => {
-  return callAction(
-    { type: actionTypes.TASKS_GET, apiEndpoint: endpoints.TASKS_GET },
-    { token, id }
-  );
+  return async(dispatch) => {
+    const json = await getJSON(endpoints.TASKS_GET, { token, id })
+
+    return dispatch({
+      type: actionTypes.TASKS_GET,
+      data: json
+    })
+  }
 };
 
 export const listTasks = token => {
-  return callAction(
-    { type: actionTypes.TASKS_LIST, apiEndpoint: endpoints.TASKS_LIST },
-    { token }
-  );
+  return async(dispatch) => {
+    const json = await getJSON(endpoints.TASKS_LIST, {token})
+    
+    return dispatch({
+      type: actionTypes.TASKS_LIST,
+      data: json
+    })
+  } 
 };
 
 export const resetTasks = () => ({
