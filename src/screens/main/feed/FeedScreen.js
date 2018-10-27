@@ -23,15 +23,21 @@ import CardItem from "./CardItem";
 import { TextInput } from "react-native-paper";
 
 class FeedScreen extends Component {
+	handleCreateTask = this.handleCreateTask.bind(this);
+
   state = {
     newTitle: "",
     newDescr: "",
     newTopicType: "",
-    newDescr: "",
+    newEnc: "",
     user: null
   };
   updateType = newType => {
-    this.setState({ newType: newType });
+    this.setState({ newTopicType: newType });
+  };
+
+	updateEnc = newEnc => {
+    this.setState({ newEnc: newEnc });
   };
 
   static navigationOptions = ({ navigation }) => ({
@@ -64,7 +70,31 @@ class FeedScreen extends Component {
       .then(user => {
         listTasks(user.token);
       });
-  };
+	};
+	
+	handleCreateTask (callback) {
+		const { newTitle, newDescr, newEnc } = this.state;
+		const { createTask } = this.props;
+
+		AsyncStorage.getItem("user")
+		.then(res => {
+			let user = JSON.parse(res);
+			navigator.geolocation.getCurrentPosition(pos => {
+				const { longitude, latitude } = pos.coords;
+				createTask({
+					token: user.token,
+					title: newTitle,
+					category: 1,
+					description: newDescr,
+					encouragement: newEnc,
+					location: [ longitude, latitude ],
+					time: 60,
+					pay: 10
+				});
+				callback();
+			}) 
+		});
+	}
 
   componentWillUnmount = () => {
     const { resetTasks } = this.props;    
@@ -75,7 +105,6 @@ class FeedScreen extends Component {
 
   render() {
     const { tasks, tasksLoaded } = this.props;
-    console.log({ tasks, tasksLoaded });
 
     if (!tasksLoaded) return <Text>"loading..."</Text>;
 
@@ -110,7 +139,7 @@ class FeedScreen extends Component {
                       selectedValue={this.state.newTopicType}
                       onValueChange={this.updateType}
                     >
-                      <Picker.Item label="Topic1" value={1} />
+                      <Picker.Item label="1" value={1} />
                       <Picker.Item label="2" value={2} />
                       <Picker.Item label="3" value={3} />
                       <Picker.Item label="4" value={4} />
@@ -120,8 +149,8 @@ class FeedScreen extends Component {
                     </Picker>
                     <Picker
                       style={{ width: "40%", marginRight: 16 }}
-                      selectedValue={this.state.newTopicType}
-                      onValueChange={this.updateType}
+                      selectedValue={this.state.newEnc}
+                      onValueChange={this.updateEnc}
                     >
                       <Picker.Item label="Paid" value={1} />
                       <Picker.Item label="Barter" value={2} />
@@ -137,12 +166,11 @@ class FeedScreen extends Component {
                     value={this.state.newDescr}
                     onChangeText={newDescr => this.setState({ newDescr })}
                   />
-
                   <TouchableOpacity
-                    onPress={() => this.addHelp()}
+                    onPress={()=>this.handleCreateTask(toggle)}
                     style={styles.addButtonContainer}
                   >
-                    <Text style={styles.addHelpText}>Add Task</Text>
+                    <Text style={styles.addHelpText}>Addertr Task</Text>
                   </TouchableOpacity>
                 </View>
               )}
