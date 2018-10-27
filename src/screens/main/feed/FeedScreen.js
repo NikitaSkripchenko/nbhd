@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
+import Toggle from "../../../library/utils/Toggle";
+import * as Routes from "../../../constants";
+
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { listTasks, resetTasks, createTask } from './actions';
+
 import { Text, View, FlatList, StyleSheet, Alert, TouchableOpacity, Platform, Picker} from 'react-native';
 import colors from "../../../assets/colors/colors";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import CardItem from "./CardItem";
-import Toggle from "../../../library/utils/Toggle";
 import {TextInput} from "react-native-paper";
-import * as Routes from "../../../constants";
-export default class FeedScreen extends Component {
 
+class FeedScreen extends Component {
     state = {
         newTitle: '',
         newDescr: '',
@@ -78,6 +83,16 @@ export default class FeedScreen extends Component {
         )
     };
 
+    componentDidMount = () => {
+        const { listTasks } = this.props;
+        listTasks("token");
+    }
+    
+    componentWillUnmount = () => {
+        const { resetTasks } = this.props;
+        resetTasks();
+    }
+
     // fetchMoreData = async() => {
 
     // };
@@ -86,6 +101,10 @@ export default class FeedScreen extends Component {
     }
 
     render() {
+        const { tasks, tasksLoaded } = this.props;
+
+        if(!tasksLoaded) return <Text>loading</Text>;
+
         return (
             <View style = {styles.container}>  
                 <Toggle>
@@ -158,6 +177,19 @@ export default class FeedScreen extends Component {
         )
     }
 }
+
+const mapState = ({ feed }) => ({
+    tasks: feed.tasks,
+    tasksLoaded: feed.tasksLoaded 
+});
+
+const mapDispatch = dispatch = bindActionCreators({
+    listTasks,
+    resetTasks, 
+    createTask
+}, dispatch)
+
+export default connect(mapState, mapDispatch)(FeedScreen);
 
 const styles = StyleSheet.create({
     container:{
