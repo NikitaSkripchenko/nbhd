@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, View, StyleSheet, TouchableOpacity, AsyncStorage } from "react-native";
+import { Text, View, StyleSheet, TouchableOpacity, AsyncStorage, Image } from "react-native";
 import { TextInput } from "react-native-paper";
 import { FEED_ROUTE } from "../../constants/routes";
 import colors from "../../assets/colors/colors";
