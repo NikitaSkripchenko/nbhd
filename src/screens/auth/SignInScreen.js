@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { TextInput } from "react-native-paper";
 import colors from "../../assets/colors/colors";
 export default class SignInScreen extends Component {
