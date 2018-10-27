@@ -1,3 +1,1 @@
-export const UP_TO_250 = 1;
-export const UP_TO_500 = 2;
-export const UP_TO_1000 = 3;
+export const distance = { 1: "up to 500", 2:'up to 1000', 3: 'up to 2000', 4: 'up to 5000', 5: 'above 5000'}

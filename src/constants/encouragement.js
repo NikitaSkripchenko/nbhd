@@ -1,0 +1,1 @@
+export const encouragement = {1: 'Paid', 2: "Barter", 3: 'Volunteer'};
