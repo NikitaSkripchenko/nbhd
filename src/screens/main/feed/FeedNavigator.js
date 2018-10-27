@@ -4,11 +4,11 @@ import transitionConfig from "../../../library/utils/transitionConfig";
 import FeedScreen from "./FeedScreen";
 import { FEED_ROUTE } from "../../../constants";
 import TaskScreen from "./TaskScreen";
-
+import MapScreen from "./MapScreen";
 const FeedNavigator = createStackNavigator({
         FeedScreen: {screen: FeedScreen},
         TaskScreen:{screen: TaskScreen},
-
+        MapScreen: {screen: MapScreen},
     },
     {
         headerMode: "float",

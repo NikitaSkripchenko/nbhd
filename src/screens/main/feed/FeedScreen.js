@@ -57,7 +57,7 @@ class FeedScreen extends Component {
         ),
         headerRight: (
             <View style={{marginRight: 16}}>
-                <Icon name={'map'} size={30} color={colors.white} onPress={() => Alert.alert("Hi")}/>
+                <Icon name={'map'} size={30} color={colors.white} onPress={() => navigation.navigate('MapScreen')}/>
             </View>
         ),
         headerStyle: {
@@ -102,7 +102,6 @@ class FeedScreen extends Component {
 
     render() {
         const { tasks, tasksLoaded } = this.props;
-
         if(!tasksLoaded) return <Text>loading</Text>;
 
         return (
@@ -166,7 +165,7 @@ class FeedScreen extends Component {
                     )}
                 </Toggle>
                 <FlatList
-                    data={this.state.data}
+                    data={tasks}
                     showsVerticalIndicator={false}
                     renderItem= {this._renderItem}
                     keyExtractor = {(x,i) => i.toString()}
@@ -183,7 +182,11 @@ const mapState = ({ feed }) => ({
     tasksLoaded: feed.tasksLoaded 
 });
 
+<<<<<<< HEAD
 const mapDispatch = dispatch => bindActionCreators({
+=======
+const mapDispatch = (dispatch) => bindActionCreators({
+>>>>>>> Nikita
     listTasks,
     resetTasks, 
     createTask
