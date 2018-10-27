@@ -182,11 +182,7 @@ const mapState = ({ feed }) => ({
     tasksLoaded: feed.tasksLoaded 
 });
 
-<<<<<<< HEAD
 const mapDispatch = dispatch => bindActionCreators({
-=======
-const mapDispatch = (dispatch) => bindActionCreators({
->>>>>>> Nikita
     listTasks,
     resetTasks, 
     createTask
