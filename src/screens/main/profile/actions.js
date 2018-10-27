@@ -1,10 +1,16 @@
 import * as actionTypes from "../../../constants/actionTypes";
 import * as endpoints from "../../../constants/apiEndpoints";
-import { callAction } from "../../../api/api";
+import { callAction, getJSON } from "../../../api/api";
 
-export const getHistory = ({ token, id }) => {
-  return callAction(
-    { type: actionTypes.TASKS_GET, apiEndpoint: endpoints.TASKS_GET },
-    { token, id }
-  );
-};
+export const getUser = ({token, id}) => {
+  return async(dispatch) => {
+    const json = getJSON(endpoints.USERS_GET, { token, id });
+
+    const data = json.result || null;
+
+    return dispatch({
+      type: actionTypes.USRERS_GET,
+      data
+    })
+  }
+}

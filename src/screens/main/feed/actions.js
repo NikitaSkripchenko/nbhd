@@ -5,9 +5,9 @@ import { getJSON } from "../../../api/api";
 export const getTask = ({ token, id }) => {
   return async(dispatch) => {
     const json = await getJSON(endpoints.TASKS_GET, { token, id })
-
+    console.log(json)
     return dispatch({
-      type: actionTypes.TASKS_GET,
+      type: actionTypes.TASK_GET,
       data: json
     })
   }

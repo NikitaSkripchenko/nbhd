@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { getUser } from "./actions";
 
-import { Text, View, StyleSheet, FlatList, Platform, Image } from "react-native";
+import { Text, View, StyleSheet, FlatList, Platform, Image, AsyncStorage } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 
 import colors from "../../../assets/colors/colors";
 import HistoryCard from "./HistoryCard";
+import { bindActionCreators } from "redux";
 
 const test = [
   {
@@ -47,7 +50,7 @@ const SettingsButton = ({ onPress, style }) => (
   </View>
 );
 
-export default class ProfileScreen extends Component {
+class ProfileScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     const { title, right, header } = appbarStyles;
 
@@ -62,9 +65,15 @@ export default class ProfileScreen extends Component {
     };
   };
 
-  static propTypes = {
-    user: PropTypes.object.isRequired
-  };
+  componentDidMount = () => {
+    const { getUser } = this.props;
+    AsyncStorage.getItem('user')
+    .then(res => JSON.parse(res))
+    .then(user => {
+      getUser(user);
+    })
+  }
+  
 
   render() {
     const {
@@ -77,6 +86,10 @@ export default class ProfileScreen extends Component {
       history
     } = styles;
 
+    const { user, userLoaded } = this.props;
+    console.log({user, userLoaded});
+    if(!userLoaded) return (<Text>Loading....</Text>)
+
     return (
       <View style={styles.main}>
         <View style={[headerContainer, shadow]}>
@@ -84,11 +97,11 @@ export default class ProfileScreen extends Component {
                 style = {profileImageContainer}/>
           <View style={userInfoContainer}>
             <View style={uNameCaption}>
-              <Text style={styles.uName}>Hello Dude</Text>
+              <Text style={styles.uName}>{user.name}</Text>
             </View>
             <View style={ratingContainer}>
               <Icon name={"star"} size={24} color={colors.orange} />
-              <Text>4.4</Text>
+              <Text>{user.rating}</Text>
             </View>
           </View>
         </View>
@@ -106,6 +119,17 @@ export default class ProfileScreen extends Component {
     );
   }
 }
+
+const mapState = ({ profile }) => ({
+  user: profile.user,
+  userLoaded: profile.userLoaded
+})
+
+const mapDispatch = dispatch => bindActionCreators({
+  getUser
+}, dispatch)
+
+export default connect(mapState, mapDispatch)(ProfileScreen)
 
 const styles = StyleSheet.create({
   main: {

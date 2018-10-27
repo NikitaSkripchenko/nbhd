@@ -5,8 +5,9 @@ import { connect } from 'react-redux';
 import { getTask, resetTask } from './actions';
 import colors from "../../../assets/colors/colors";
 import Icon from "react-native-vector-icons/MaterialIcons";
+import encouragementType from "../../../constants/encourageTypes";
 
-import { Text, View, StyleSheet } from 'react-native'
+import { Text, View, StyleSheet, AsyncStorage } from 'react-native'
 
 const BackButton = ({ onPress, style }) => (
   <View style={style}>
@@ -36,7 +37,18 @@ class TaskScreen extends Component {
 
   componentDidMount = () => {
     const { getTask } = this.props;
-    //getTask();
+    //console.log(1);
+    AsyncStorage.getItem('user')
+    .then(res => JSON.parse(res))
+    .then(user => {
+      console.log(user);
+      getTask({
+        token: user.token,
+        id: this.props.navigation.state.params.item,
+      })
+    })
+
+
   }
   
   componentWillUnmount = () => {
@@ -46,10 +58,14 @@ class TaskScreen extends Component {
 
   render() {
     const { task, taskLoaded } = this.props;
-
+    if(!taskLoaded){return <Text>loading</Text>}
+    const { result } = task;
     return (
       <View>
-        <Text> textInComponent </Text>
+        <Text> {result.title} </Text>
+        <Text>{result.creator.name}</Text>
+        <Text>{result.description}</Text>
+        <Text>{encouragementType[result.encouragement]}</Text>
       </View>
     )
   }
