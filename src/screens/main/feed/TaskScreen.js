@@ -6,7 +6,7 @@ import { getTask, resetTask } from './actions';
 import colors from "../../../assets/colors/colors";
 import Icon from "react-native-vector-icons/MaterialIcons";
 
-import { Text, View, StyleSheet } from 'react-native'
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
 
 const BackButton = ({ onPress, style }) => (
   <View style={style}>

@@ -36,6 +36,7 @@ export default (state = initialState, action) => {
         tasksLoaded: false
     }
     case actionTypes.TASKS_CREATE:
+      //console.log('asd');
       const { status, ...newTask } = data;
       return {
         ...state,
