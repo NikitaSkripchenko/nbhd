@@ -102,7 +102,6 @@ class FeedScreen extends Component {
 
     render() {
         const { tasks, tasksLoaded } = this.props;
-
         if(!tasksLoaded) return <Text>loading</Text>;
 
         return (
@@ -166,7 +165,7 @@ class FeedScreen extends Component {
                     )}
                 </Toggle>
                 <FlatList
-                    data={this.state.data}
+                    data={tasks}
                     showsVerticalIndicator={false}
                     renderItem= {this._renderItem}
                     keyExtractor = {(x,i) => i.toString()}
@@ -183,7 +182,7 @@ const mapState = ({ feed }) => ({
     tasksLoaded: feed.tasksLoaded 
 });
 
-const mapDispatch = dispatch = bindActionCreators({
+const mapDispatch = (dispatch) => bindActionCreators({
     listTasks,
     resetTasks, 
     createTask
