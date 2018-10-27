@@ -16,6 +16,16 @@ export const listTasks = token => {
   );
 };
 
+export const resetTasks = () => ({
+  type: actionTypes.TASKS_RESET,
+  data: null
+})
+
+export const resetTask = () => ({
+  type: actionTypes.TASK_RESET,
+  data: null
+})
+
 export const createTask = ({
   token,
   title,
