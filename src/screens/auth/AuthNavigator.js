@@ -1,10 +1,10 @@
 import {createStackNavigator} from "react-navigation";
 import transitionConfig from "../../library/utils/transitionConfig";
-import LogInScreen from "./AuthScreen";
-
+import AuthScreen from "./AuthScreen";
+import { AUTH_ROUTE } from "../../constants";
 
 const AuthNavigator = createStackNavigator({
-        LogInScreen: {screen: LogInScreen},
+    AuthScreen: {screen: AuthScreen},
         
     },
     {
@@ -14,7 +14,7 @@ const AuthNavigator = createStackNavigator({
             gesturesEnabled: true,
             gestureResponseDistance: {horizontal: 200}
         },
-        initialRouteName: "LogInScreen",
+        initialRouteName: AUTH_ROUTE,
     });
 
 export default AuthNavigator;

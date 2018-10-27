@@ -1,6 +1,8 @@
 import {createStackNavigator} from "react-navigation";
+
 import transitionConfig from "../../../library/utils/transitionConfig";
 import ProfileScreen from "./ProfileScreen";
+import { PROFILE_ROUTE } from "../../../constants";
 
 const ProfileNavigator = createStackNavigator({
         ProfileScreen: {screen: ProfileScreen},
@@ -12,7 +14,7 @@ const ProfileNavigator = createStackNavigator({
             gesturesEnabled: true,
             gestureResponseDistance: {horizontal: 200}
         },
-        initialRouteName: "ProfileScreen",
+        initialRouteName: PROFILE_ROUTE,
     });
 
 export default ProfileNavigator;

@@ -3,6 +3,7 @@ import {createStackNavigator} from "react-navigation";
 import transitionConfig from "../../library/utils/transitionConfig";
 import TabNavigator from "./TabNavigator";
 
+import { MAIN_ROUTE } from "../../constants";
 import colors from "../../assets/colors/colors";
 
 const MainNavigator = createStackNavigator({
@@ -21,7 +22,7 @@ const MainNavigator = createStackNavigator({
             gesturesEnabled: true,
             gestureResponseDistance: {horizontal: 200}
         },
-        initialRouteName: "TabNavigator",
+        initialRouteName: MAIN_ROUTE,
     });
 
 export default MainNavigator;
