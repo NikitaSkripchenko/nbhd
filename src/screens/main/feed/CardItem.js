@@ -30,7 +30,7 @@ const CardItem = ({
 }) => {
 
     return (
-        <TouchableOpacity style = {[styles.shadow, styles.container ]}>
+        <TouchableOpacity onPress = {()=> this.props.onPress()}style = {[styles.shadow, styles.container ]}>
 
 
             <View style = {styles.userContainer}>
