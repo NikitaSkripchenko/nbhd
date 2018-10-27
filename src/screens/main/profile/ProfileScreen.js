@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import { Text, View, StyleSheet, FlatList, Platform } from "react-native";
+import { Text, View, StyleSheet, FlatList, Platform, Image } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 
 import colors from "../../../assets/colors/colors";
@@ -80,9 +80,8 @@ export default class ProfileScreen extends Component {
     return (
       <View style={styles.main}>
         <View style={[headerContainer, shadow]}>
-          <View style={profileImageContainer}>
-            <Text>I</Text>
-          </View>
+          <Image source = {require('./../../../assets/images/userPic.png')} 
+                style = {profileImageContainer}/>
           <View style={userInfoContainer}>
             <View style={uNameCaption}>
               <Text style={styles.uName}>Hello Dude</Text>
