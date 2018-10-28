@@ -13,8 +13,9 @@ const store = createStore(
   rootReduser,
   applyMiddleware(...middleware, ...devMiddleware)
 );
-
+console.disableYellowBox = true;
 const App = props => (
+  
   <Provider store={store}>
     <Main />
   </Provider>

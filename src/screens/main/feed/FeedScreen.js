@@ -15,7 +15,8 @@ import {
   TouchableOpacity,
   Platform,
   Picker,
-  AsyncStorage
+  AsyncStorage,
+  RefreshControl,
 } from "react-native";
 import colors from "../../../assets/colors/colors";
 import Icon from "react-native-vector-icons/MaterialIcons";
@@ -63,6 +64,18 @@ class FeedScreen extends Component {
     }
   });
 
+  _onRefresh = async() => {
+    this.setState({refreshing: true});
+    const { listTasks } = this.props;
+    AsyncStorage.getItem("user")
+      .then(res => JSON.parse(res))
+      .then(user => {
+        listTasks(user.token);
+        this.setState({refreshing: false});
+      });
+
+};
+
   componentDidMount = () => {
     const { listTasks } = this.props;
     AsyncStorage.getItem("user")
@@ -101,6 +114,10 @@ class FeedScreen extends Component {
     resetTasks();
   };
 
+   shouldComponentUpdate =()=>{
+     return true;
+   }
+
   navigate = (id) => this.props.navigation.navigate("TaskScreen", { item: id })
 
   render() {
@@ -134,7 +151,7 @@ class FeedScreen extends Component {
                   />
 
                   <View style={{ flexDirection: "row" }}>
-                    <Picker
+                    {/* <Picker
                       style={{ width: "40%", marginHorizontal: 16 }}
                       selectedValue={this.state.newTopicType}
                       onValueChange={this.updateType}
@@ -146,9 +163,9 @@ class FeedScreen extends Component {
                       <Picker.Item label="5" value={5} />
                       <Picker.Item label="6" value={6} />
                       <Picker.Item label="7" value={7} />
-                    </Picker>
+                    </Picker> */}
                     <Picker
-                      style={{ width: "40%", marginRight: 16 }}
+                      style={{ width: "100%", marginRight: 16 }}
                       selectedValue={this.state.newEnc}
                       onValueChange={this.updateEnc}
                     >
@@ -170,7 +187,7 @@ class FeedScreen extends Component {
                     onPress={()=>this.handleCreateTask(toggle)}
                     style={styles.addButtonContainer}
                   >
-                    <Text style={styles.addHelpText}>Addertr Task</Text>
+                    <Text style={styles.addHelpText}>Add Task</Text>
                   </TouchableOpacity>
                 </View>
               )}
@@ -178,6 +195,11 @@ class FeedScreen extends Component {
           )}
         </Toggle>
         <FlatList
+        refreshControl={
+          <RefreshControl
+              refreshing={this.state.refreshing}
+              onRefresh={this._onRefresh}
+          />}
           data={tasks.result.tasks}
           showsVerticalIndicator={false}
           renderItem={({ item }) => (

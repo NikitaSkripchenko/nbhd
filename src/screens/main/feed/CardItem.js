@@ -53,7 +53,7 @@ const CardItem = ({
                     <Text style = {styles.text}>{getDistance[distance]}</Text>
                     <Text style = {styles.text}>Estimated time: {estimatedTime} minutes</Text>
                     <View style = {styles.encourageContainer}>
-                        <Text style={styles.text}>{getEncourageType[encourageType]}</Text>
+                        <Text style={styles.text}>Encouragement: {getEncourageType[encourageType]}</Text>
                     </View>
                 </View>
                 
@@ -95,11 +95,9 @@ const styles = StyleSheet.create({
     },
     text:{
         fontWeight: '500',
-        color: colors.orange,
         textAlign: 'center'
     },
     textName:{
-        color: colors.orange,
         textAlign: 'center'
     },
     ratingContainer:{
@@ -130,6 +128,7 @@ const styles = StyleSheet.create({
     titleText:{
         textAlign: 'center',
         fontSize: 17,
+        color: colors.orange,
         fontWeight: '500'
     },
     infoContainer:{

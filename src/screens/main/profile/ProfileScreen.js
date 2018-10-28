@@ -93,7 +93,7 @@ class ProfileScreen extends Component {
     return (
       <View style={styles.main}>
         <View style={[headerContainer, shadow]}>
-          <Image source = {require('./../../../assets/images/userPic.png')} 
+          <Image source = {{uri:user.photo}} 
                 style = {profileImageContainer}/>
           <View style={userInfoContainer}>
             <View style={uNameCaption}>

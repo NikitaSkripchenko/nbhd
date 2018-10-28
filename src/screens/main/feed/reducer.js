@@ -39,7 +39,7 @@ export default (state = initialState, action) => {
     case actionTypes.TASKS_CREATE:
       return {
         ...state,
-        tasks: !!data ? state.tasks.push(data) : state.tasks;
+        tasks: !!data ? state.tasks.push(data) : state.tasks
       }
     default: 
       return state;
